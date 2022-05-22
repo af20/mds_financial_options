@@ -3,7 +3,7 @@
 #   - la funzione restituisce una lista contenente 
 #       - il prezzo della put a t0 , il vettore
 #       - Q = (q u , q d ) 
-#       - le quantità y* di titolo rischioso nel portafoglio di replica.
+#       - le quantitï¿½ y* di titolo rischioso nel portafoglio di replica.
 
 # (2) Scrivete una funzione in R che internamente richiama la funzione del punto 1 
 #     e calcola il prezzo al tempo t 0 di una call europea con la put-call parity 
@@ -34,6 +34,7 @@ PutCallParityPrice = function(S0, STRIKE, R, CALL_or_PUT, T0=0, T1=1) { # S: St 
   #   PV(x) = the present value of the strike price (x), discounted from the value on the expiration date at the risk-free rate
   #   P = price of the European put
   #   S = spot price or the current market value of the underlying asset
+
   TimeToMat = 30/360 # un mese espresso come frazione dell'anno 
   price_1 = BinomialTreeEuOption(S0, STRIKE, R, CALL_or_PUT)
   
@@ -52,8 +53,14 @@ PutCallParityPrice = function(S0, STRIKE, R, CALL_or_PUT, T0=0, T1=1) { # S: St 
 }
 
 
+
+
 # EX.2
-mertonConstraints = function(PriceOpt, S, K, r, TypeCall=TRUE) { # S: St oggi
+mertonConstraints = function(PriceOpt, S, K, r, TypeCall=TRUE) { 
+  # S: St oggi
+  # K: Strike
+  # r: rendimento
+  
   TimeToMat = 30/360 # un mese espresso come frazione dell'anno 
   if(TypeCall) {
     cond = PriceOpt >= max(S - K * exp(-r * TimeToMat), 0)

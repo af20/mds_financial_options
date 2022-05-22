@@ -9,7 +9,7 @@ library("fOptions")
 library("quantmod")
 
 BinomialTreeEuOption = function(S0, CALL_or_PUT, N_periods) {
-  Delta = 1/360
+  Delta = 1/360 # 1 giorno dell'anno
   sigma = 0.1 # sqrt(1/Delta*Sample2ndMom)  #logRet = diff(log(S0)) #Sample2ndMom = mean(logRet^2) # il momento secondo campionario del log rendimenti
   TimeToMat = 30/360 # un mese espresso come frazione dell'anno 
   if(CALL_or_PUT == 'CALL')
@@ -24,9 +24,9 @@ BinomialTreeEuOption = function(S0, CALL_or_PUT, N_periods) {
 }
 
 
-aapl = getSymbols("AAPL")
+aapl = getSymbols("AAPL") # prezzi azione Apple Inc.
 
-v_close = as.numeric(AAPL$AAPL.Close)
+v_close = as.numeric(AAPL$AAPL.Close) # vettore con i prezzi close di Apple
 v_returns = diff(log(v_close))
 S0 = tail(v_close, 1L)
 
@@ -43,5 +43,4 @@ for (ST in 1:30) {
   v_periods[ST] = ST
 }
 plot(x=v_periods, y=v_prices, type="l")
-  
 

@@ -1,5 +1,3 @@
-#EX.1
-
 CallPayoff = function(ST, K, is_long=TRUE) {
   if(is_long)
     payoff = pmax(ST-K, 0)
